@@ -10,8 +10,7 @@ const config = {
   // @ts-expect-error
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
-    compress: true,
-    host: 'localhost',
+    host: '0.0.0.0',
     port: 3000,
     hot: true,
     allowedHosts: []
@@ -29,10 +28,13 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.pug$/,
+        test: /\.pug$/i,
         use: [
           { 
             loader: 'simple-pug-loader',
+            options: {
+              root: path.resolve(__dirname, "src")
+            }
           }
         ]
       },
